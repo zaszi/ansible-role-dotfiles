@@ -1,0 +1,7 @@
+### Ansible ###
+
+# Ignore Ansible retry files
+*.retry
+
+# Ignore local dotfiles symlink
+/files
