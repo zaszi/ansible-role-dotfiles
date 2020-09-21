@@ -1,0 +1,18 @@
+---
+- name: Ensure ~/.config/alacritty exists
+  file:
+    path: "/home/{{ ansible_user }}/.config/alacritty"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0700
+    state: directory
+  when: alacritty|bool
+
+- name: Install alacritty configuration file
+  copy:
+    src: alacritty/alacritty.yml
+    dest: "/home/{{ ansible_user }}/.config/alacritty/alacritty.yml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0600
+  when: alacritty|bool

@@ -1,4 +1,6 @@
 ---
+- include_tasks: alacritty.yml
+
 - name: Secure ownership recursively on home directory
   file:
     path: "/home/{{ ansible_user }}"
