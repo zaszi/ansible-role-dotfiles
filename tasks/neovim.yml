@@ -1,0 +1,31 @@
+---
+- name: Ensure ~/.config/nvim exists
+  file:
+    path: "/home/{{ ansible_user }}/.config/nvim"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0700
+    state: directory
+  with_items:
+    - "pack/plugin/start"
+    - "tmp"
+  when: neovim|bool
+
+- name: Install specified vim plugins
+  git:
+    repo: "{{ item.value }}"
+    dest: "/home/{{ ansible_user }}/.config/nvim/pack/plugin/start/
+    {{ item.key }}"
+    clone: true
+    update: true
+  with_dict: "{{ neovim_plugins }}"
+  when: neovim|bool
+
+- name: Install vim configuration file
+  copy:
+    src: dotfiles/viminit.vim
+    dest: "/home/{{ ansible_user }}/.config/nvim/init.vim"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0600
+  when: neovim|bool
