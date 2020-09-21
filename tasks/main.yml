@@ -1,2 +1,9 @@
 ---
-# tasks file for ansible-role-dotfiles
+- name: Secure ownership recursively on home directory
+  file:
+    path: "/home/{{ ansible_user }}"
+    mode: "u=rwX,g-rwx,o-rwx"
+    recurse: true
+    follow: false
+    modification_time: "preserve"
+    access_time: "preserve"
