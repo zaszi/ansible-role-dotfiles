@@ -1,5 +1,6 @@
 ---
 - include_tasks: alacritty.yml
+- include_tasks: bash.yml
 
 - name: Secure ownership recursively on home directory
   file:

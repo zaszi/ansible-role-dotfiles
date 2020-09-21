@@ -1,2 +1,4 @@
 ---
 alacritty: false
+bash: false
+bash_root: false
