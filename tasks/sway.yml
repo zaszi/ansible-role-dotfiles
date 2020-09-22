@@ -43,3 +43,12 @@
     group: "{{ ansible_user }}"
     mode: 0600
   when: sway|bool
+
+- name: Install udev rules for backlight
+  copy:
+    src: backlight.rules
+    dest: /etc/udev/rules.d/90-backlight.rules
+    owner: root
+    group: root
+    mode: 0644
+  when: sway|bool
