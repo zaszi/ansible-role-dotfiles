@@ -5,3 +5,4 @@ bash_root: false
 neovim: false
 neovim_plugins: []
 sway: false
+tmux: false
