@@ -1,0 +1,45 @@
+---
+- name: Ensure ~/.config/sway exists
+  file:
+    path: "/home/{{ ansible_user }}/.config/sway"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0700
+  when: sway|bool
+
+- name: Install sway configuration file
+  copy:
+    src: sway/config
+    dest: "/home/{{ ansible_user }}/.config/sway/config"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0600
+  when: sway|bool
+
+- name: Ensure ~/.config/waybar exists
+  file:
+    path: "/home/{{ ansible_user }}/.config/waybar"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0700
+  when: sway|bool
+
+- name: Install waybar config
+  copy:
+    src: waybar/config
+    dest: "/home/{{ ansible_user }}/.config/waybar/config"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0600
+  when: sway|bool
+
+- name: Install waybar style sheet
+  copy:
+    src: waybar/style.css
+    dest: "/home/{{ ansible_user }}/.config/waybar/style.css"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0600
+  when: sway|bool

@@ -4,3 +4,4 @@ bash: false
 bash_root: false
 neovim: false
 neovim_plugins: []
+sway: false
