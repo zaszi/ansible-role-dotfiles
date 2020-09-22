@@ -1,7 +1,7 @@
 ---
 - name: Install bash config
   copy:
-    src: bash/bashrc
+    src: dotfiles/bash/bashrc
     dest: "/home/{{ ansible_user }}/.bashrc"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -10,7 +10,7 @@
 
 - name: Install bash profile config
   copy:
-    src: bash/bash_profile
+    src: dotfiles/bash/bash_profile
     dest: "/home/{{ ansible_user }}/.bash_profile"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -19,7 +19,7 @@
 
 - name: Install bash config for root
   copy:
-    src: bash/bashrc
+    src: dotfiles/bash/bashrc
     dest: "/root/.bashrc"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -27,9 +27,9 @@
   become: true
   when: bash|bool and bash_root|bool
 
-- name: Install bash profile config for root
+- name: dotfiles/Install bash profile config for root
   copy:
-    src: bash/bash_profile
+    src: dotfiles/bash/bash_profile
     dest: "/root/.bash_profile"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

@@ -4,4 +4,4 @@
 *.retry
 
 # Ignore local dotfiles symlink
-/files
+/files/dotfiles

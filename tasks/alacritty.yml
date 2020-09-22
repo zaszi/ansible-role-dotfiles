@@ -10,7 +10,7 @@
 
 - name: Install alacritty configuration file
   copy:
-    src: alacritty/alacritty.yml
+    src: dotfiles/alacritty/alacritty.yml
     dest: "/home/{{ ansible_user }}/.config/alacritty/alacritty.yml"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

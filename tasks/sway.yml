@@ -10,7 +10,7 @@
 
 - name: Install sway configuration file
   copy:
-    src: sway/config
+    src: dotfiles/sway/config
     dest: "/home/{{ ansible_user }}/.config/sway/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -28,7 +28,7 @@
 
 - name: Install waybar config
   copy:
-    src: waybar/config
+    src: dotfiles/waybar/config
     dest: "/home/{{ ansible_user }}/.config/waybar/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -37,7 +37,7 @@
 
 - name: Install waybar style sheet
   copy:
-    src: waybar/style.css
+    src: dotfiles/waybar/style.css
     dest: "/home/{{ ansible_user }}/.config/waybar/style.css"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

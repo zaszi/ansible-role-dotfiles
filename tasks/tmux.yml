@@ -1,7 +1,7 @@
 ---
 - name: Install tmux config
   copy:
-    src: tmux/tmux.conf
+    src: dotfiles/tmux/tmux.conf
     dest: "/home/{{ ansible_user }}/.tmux.conf"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
