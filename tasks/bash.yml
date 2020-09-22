@@ -21,8 +21,8 @@
   copy:
     src: dotfiles/bash/bashrc
     dest: "/root/.bashrc"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: root
+    group: root
     mode: 0600
   become: true
   when: bash|bool and bash_root|bool
@@ -31,8 +31,8 @@
   copy:
     src: dotfiles/bash/bash_profile
     dest: "/root/.bash_profile"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: root
+    group: root
     mode: 0600
   become: true
   when: bash|bool and bash_root|bool
