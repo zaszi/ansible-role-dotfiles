@@ -4,6 +4,7 @@
 - include_tasks: neovim.yml
 - include_tasks: rust.yml
 - include_tasks: sway.yml
+- include_tasks: syncthing.yml
 - include_tasks: tmux.yml
 
 - name: Secure ownership recursively on home directory

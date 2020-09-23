@@ -8,4 +8,5 @@ rust: false
 rust_components: []
 rust_cargo: []
 sway: false
+syncthing: false
 tmux: false

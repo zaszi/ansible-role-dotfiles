@@ -1,0 +1,39 @@
+---
+- name: Start and enable the syncthing service in userspace
+  systemd:
+    name: syncthing
+    scope: user
+    enabled: true
+    state: started
+  when: syncthing|bool
+
+- name: Ensure /var/lib/systemd/linger exists
+  file:
+    path: /var/lib/systemd/linger
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  become: true
+
+- name: Verify whether lingering is enabled for user
+  stat:
+    path: "/var/lib/systemd/linger/{{ ansible_user }}"
+  register: linger
+
+- name: Enable lingering for user
+  shell: loginctl enable-linger "{{ ansible_user }}"
+  become: true
+  when: not linger.stat.exists
+
+- name: Verify whether Sync directory contains files
+  find:
+    path: "/var/lib/systemd/linger/{{ ansible_user }}"
+    patterns: "*"
+  register: sync
+
+- name: Remove default Sync directory if empty
+  file:
+    path: "/home/{{ ansible_user }}/Sync"
+    state: absent
+  when: sync.matched|int == 0
