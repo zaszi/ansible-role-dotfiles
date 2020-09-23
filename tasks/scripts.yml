@@ -1,0 +1,19 @@
+---
+- name: Ensure ~/.bin exists
+  file:
+    path: "/home/{{ ansible_user }}/.bin"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0700
+    state: directory
+  when: scripts|bool
+
+- name: Install user scripts
+  copy:
+    src: "{{ item }}"
+    dest: "/home/{{ ansible_user }}/.bin/{{ item | basename }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0700
+  loop: "{{ lookup('fileglob', 'files/scripts/bin/*', wantlist=True) }}"
+  when: scripts|bool

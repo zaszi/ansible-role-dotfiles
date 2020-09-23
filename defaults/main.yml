@@ -7,6 +7,7 @@ neovim_plugins: []
 rust: false
 rust_components: []
 rust_cargo: []
+scripts: false
 sway: false
 syncthing: false
 tmux: false
