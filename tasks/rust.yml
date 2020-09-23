@@ -1,0 +1,48 @@
+---
+- name: Check whether Rust stable toolchain is installed and set as default
+  shell: rustup default
+  register: rust_toolchain
+  failed_when: false
+  changed_when: false
+
+- name: Install Rust stable toolchain
+  shell: |
+    rustup toolchain install stable
+    rustup default stable
+  when: rust|bool and "stable" not in rust_toolchain.stdout
+
+- name: Check whether wasm32 target is installed
+  shell: rustup target list --installed
+  register: rust_wasm32
+  failed_when: false
+  changed_when: false
+
+- name: Install Rust wasm32 target
+  shell: |
+    rustup target add wasm32-unknown-unknown
+  when: rust|bool and "wasm32-unknown-unknown" not in rust_wasm32.stdout
+
+- name: Check whether required Rust components are installed
+  shell: rustup component list | grep installed
+  register: rust_components
+  failed_when: false
+  changed_when: false
+
+- name: Install specified Rust components
+  shell: rustup component add {{ item }}
+  loop: "{{ rust_components }}"
+  when: rust|bool and item not in rust_components.stdout
+
+- name: Check whether Cargo packages are installed
+  shell: cargo install --list
+  register: rust_cargo
+  failed_when: false
+  changed_when: false
+
+- name: Install specified Cargo packages
+  shell: |
+    cargo install {{ item }}
+  args:
+    executable: /bin/bash
+  loop: "{{ rust_cargo }}"
+  when: rust|bool and item.split(' ')[0] not in rust_cargo.stdout

@@ -2,6 +2,7 @@
 - include_tasks: alacritty.yml
 - include_tasks: bash.yml
 - include_tasks: neovim.yml
+- include_tasks: rust.yml
 - include_tasks: sway.yml
 - include_tasks: tmux.yml
 

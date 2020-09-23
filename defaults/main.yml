@@ -4,5 +4,8 @@ bash: false
 bash_root: false
 neovim: false
 neovim_plugins: []
+rust: false
+rust_components: []
+rust_cargo: []
 sway: false
 tmux: false
