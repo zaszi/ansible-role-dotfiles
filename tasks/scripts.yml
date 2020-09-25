@@ -17,3 +17,22 @@
     mode: 0700
   loop: "{{ lookup('fileglob', 'files/scripts/bin/*', wantlist=True) }}"
   when: scripts|bool
+
+- name: Ensure ~/.bin/snippets exists
+  file:
+    path: "/home/{{ ansible_user }}/.bin/snippets"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0700
+    state: directory
+  when: scripts|bool
+
+- name: Install user snippets
+  copy:
+    src: "{{ item }}"
+    dest: "/home/{{ ansible_user }}/.bin/snippets/{{ item | basename }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0700
+  loop: "{{ lookup('fileglob', 'files/scripts/snippets/*', wantlist=True) }}"
+  when: scripts|bool
