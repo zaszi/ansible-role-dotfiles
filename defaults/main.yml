@@ -11,3 +11,5 @@ scripts: false
 sway: false
 syncthing: false
 tmux: false
+weechat: false
+weechat_backup_location: ""

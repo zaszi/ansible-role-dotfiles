@@ -8,20 +8,22 @@ It is recommended to run this role with `become: false`, as most tasks are relev
 
 ## Role Variables
 
-| Variable        | Choices/**Default** | Comments                                                      |
-| --------------- | ------------------- | ------------------------------------------------------------- |
-| alacritty       | true, **false**     | Whether to install Alacritty configuration files              |
-| bash            | true, **false**     | Whether to install Bash configuration files                   |
-| bash_root       | true, **false**     | Whether to install Bash configuration files for the root user |
-| neovim          | true, **false**     | Whether to install Neovim configuration files                 |
-| neovim_plugins  | **[]**, …           | List of Neovim plugins to install                             |
-| rust            | true, **false**     | Whether to set up the Rust development tools                  |
-| rust_components | **[]**, …           | List of Rust components to install                            |
-| rust_cargo      | **[]**, …           | List of Rust Cargo binaries to install                        |
-| scripts         | true, **false**     | Whether to install user scripts                               |
-| sway            | true, **false**     | Whether to install Sway and Waybar configuration files        |
-| syncthing       | true, **false**     | Whether to set up Syncthing                                   |
-| tmux            | true, **false**     | Whether to install Tmux configuration files                   |
+| Variable                | Choices/**Default** | Comments                                                      |
+| ----------------------- | ------------------- | ------------------------------------------------------------- |
+| alacritty               | true, **false**     | Whether to install Alacritty configuration files              |
+| bash                    | true, **false**     | Whether to install Bash configuration files                   |
+| bash_root               | true, **false**     | Whether to install Bash configuration files for the root user |
+| neovim                  | true, **false**     | Whether to install Neovim configuration files                 |
+| neovim_plugins          | **[]**, …           | List of Neovim plugins to install                             |
+| rust                    | true, **false**     | Whether to set up the Rust development tools                  |
+| rust_components         | **[]**, …           | List of Rust components to install                            |
+| rust_cargo              | **[]**, …           | List of Rust Cargo binaries to install                        |
+| scripts                 | true, **false**     | Whether to install user scripts                               |
+| sway                    | true, **false**     | Whether to install Sway and Waybar configuration files        |
+| syncthing               | true, **false**     | Whether to set up Syncthing                                   |
+| tmux                    | true, **false**     | Whether to install Tmux configuration files                   |
+| weechat                 | true, **false**     | Whether to install Weechat relay service files                |
+| weechat_backup_location | "", …               | Location of the Weechatconfiguration backup tarball           |
 
 ## Dependencies
 
