@@ -7,7 +7,7 @@
 
 - name: Copy WeeChat backup archive
   copy:
-    src: weechat-relay/"{{ weechat_backup_location }}"
+    src: "{{ weechat_backup_location }}"
     dest: "/home/{{ ansible_user }}/weechat_config.tar.gz"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
