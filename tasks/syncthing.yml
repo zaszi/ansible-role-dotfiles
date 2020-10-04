@@ -15,25 +15,28 @@
     mode: 0755
     state: directory
   become: true
+  when: syncthing|bool
 
 - name: Verify whether lingering is enabled for user
   stat:
     path: "/var/lib/systemd/linger/{{ ansible_user }}"
   register: linger
+  when: syncthing|bool
 
 - name: Enable lingering for user
   shell: loginctl enable-linger "{{ ansible_user }}"
   become: true
-  when: not linger.stat.exists
+  when: syncthing|bool and not linger.stat.exists
 
 - name: Verify whether Sync directory contains files
   find:
     path: "/var/lib/systemd/linger/{{ ansible_user }}"
     patterns: "*"
   register: sync
+  when: syncthing|bool
 
 - name: Remove default Sync directory if empty
   file:
     path: "/home/{{ ansible_user }}/Sync"
     state: absent
-  when: sync.matched|int == 0
+  when: syncthing|bool and sync.matched|int == 0
