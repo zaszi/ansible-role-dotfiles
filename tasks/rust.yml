@@ -2,6 +2,7 @@
 - name: Check whether Rust stable toolchain is installed and set as default
   shell: rustup default
   register: rust_toolchain
+  when: rust|bool
   failed_when: false
   changed_when: false
 
@@ -14,6 +15,7 @@
 - name: Check whether wasm32 target is installed
   shell: rustup target list --installed
   register: rust_wasm32
+  when: rust|bool
   failed_when: false
   changed_when: false
 
@@ -24,18 +26,20 @@
 
 - name: Check whether required Rust components are installed
   shell: rustup component list | grep installed
-  register: rust_components
+  register: components
+  when: rust|bool
   failed_when: false
   changed_when: false
 
 - name: Install specified Rust components
   shell: rustup component add {{ item }}
   loop: "{{ rust_components }}"
-  when: rust|bool and item not in rust_components.stdout
+  when: rust|bool and item not in components.stdout
 
 - name: Check whether Cargo packages are installed
   shell: cargo install --list
-  register: rust_cargo
+  register: cargo
+  when: rust|bool
   failed_when: false
   changed_when: false
 
@@ -45,4 +49,4 @@
   args:
     executable: /bin/bash
   loop: "{{ rust_cargo }}"
-  when: rust|bool and item.split(' ')[0] not in rust_cargo.stdout
+  when: rust|bool and item.split(' ')[0] not in cargo.stdout
