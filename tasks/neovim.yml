@@ -1,7 +1,7 @@
 ---
 - name: Ensure ~/.config/nvim exists
   file:
-    path: "/home/{{ ansible_user }}/.config/nvim"
+    path: "/home/{{ ansible_user }}/.config/nvim/{{ item }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0700
