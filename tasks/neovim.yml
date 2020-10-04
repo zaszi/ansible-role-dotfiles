@@ -11,7 +11,7 @@
     - "tmp"
   when: neovim|bool
 
-- name: Install specified vim plugins
+- name: Install specified neovim plugins
   git:
     repo: "{{ item.value }}"
     dest: "/home/{{ ansible_user }}/.config/nvim/pack/plugin/start/
@@ -21,7 +21,7 @@
   with_dict: "{{ neovim_plugins }}"
   when: neovim|bool
 
-- name: Install vim configuration file
+- name: Install neovim configuration file
   copy:
     src: dotfiles/neovim/viminit.vim
     dest: "/home/{{ ansible_user }}/.config/nvim/init.vim"
