@@ -14,8 +14,8 @@
 - name: Install specified neovim plugins
   git:
     repo: "{{ item.value }}"
-    dest: "/home/{{ ansible_user }}/.config/nvim/pack/plugin/start/
-    {{ item.key }}"
+    dest: "/home/{{ ansible_user }}/.config/nvim/pack/plugin/\
+      start/{{ item.key }}"
     clone: true
     update: true
   with_dict: "{{ neovim_plugins }}"
