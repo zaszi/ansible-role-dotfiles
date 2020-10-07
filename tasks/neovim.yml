@@ -23,7 +23,7 @@
 
 - name: Install neovim configuration file
   copy:
-    src: dotfiles/neovim/viminit.vim
+    src: dotfiles/neovim/init.vim
     dest: "/home/{{ ansible_user }}/.config/nvim/init.vim"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
