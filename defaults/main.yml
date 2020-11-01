@@ -2,6 +2,7 @@
 alacritty: false
 bash: false
 bash_root: false
+mako: false
 neovim: false
 neovim_plugins: []
 rust: false

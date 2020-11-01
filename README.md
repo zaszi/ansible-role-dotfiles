@@ -4,7 +4,7 @@ Deploys personal dotfiles and scripts.
 
 ## Requirements
 
-It is recommended to run this role with `become: false`, as most tasks are relevant to your particular user, not the entire system. The few tasks that require root will escalate privileges on their own (and thus you will still need a user that has sudo rights).
+It is recommended to run this role with `become: false`, as most tasks are relevant to your particular user, not the entire system. The few tasks that require root will escalate privileges on their own (and thus you will still need a user that has sudo rights). Additionally, this role assumes that the prerequisite software is already installed.
 
 ## Role Variables
 
@@ -13,6 +13,7 @@ It is recommended to run this role with `become: false`, as most tasks are relev
 | alacritty               | true, **false**     | Whether to install Alacritty configuration files              |
 | bash                    | true, **false**     | Whether to install Bash configuration files                   |
 | bash_root               | true, **false**     | Whether to install Bash configuration files for the root user |
+| mako                    | true, **false**     | Whether to install Mako configuration files                   |
 | neovim                  | true, **false**     | Whether to install Neovim configuration files                 |
 | neovim_plugins          | **[]**, …           | List of Neovim plugins to install                             |
 | rust                    | true, **false**     | Whether to set up the Rust development tools                  |
