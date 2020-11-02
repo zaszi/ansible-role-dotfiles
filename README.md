@@ -16,6 +16,7 @@ It is recommended to run this role with `become: false`, as most tasks are relev
 | mako                    | true, **false**     | Whether to install Mako configuration files                   |
 | neovim                  | true, **false**     | Whether to install Neovim configuration files                 |
 | neovim_plugins          | **[]**, …           | List of Neovim plugins to install                             |
+| qutebrowser             | true, **false**     | Whether to install Qutebrowser configuration files            |
 | rust                    | true, **false**     | Whether to set up the Rust development tools                  |
 | rust_components         | **[]**, …           | List of Rust components to install                            |
 | rust_cargo              | **[]**, …           | List of Rust Cargo binaries to install                        |

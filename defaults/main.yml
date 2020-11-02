@@ -5,6 +5,7 @@ bash_root: false
 mako: false
 neovim: false
 neovim_plugins: []
+qutebrowser: false
 rust: false
 rust_components: []
 rust_cargo: []
