@@ -45,6 +45,7 @@
   when: sway|bool
 
 - name: Install udev rules for backlight
+  become: true
   copy:
     src: backlight.rules
     dest: /etc/udev/rules.d/90-backlight.rules
