@@ -40,4 +40,4 @@ This role requires my [dotfiles](https://github.com/zaszi/dotfiles) and my [scri
 
 ## License
 
-Ansible-role-dotfiles is licensed under the [MIT license](https://github.com/zaszi/ansible-role-dotfiles/blob/master/LICENSE).
+Ansible-role-dotfiles is licensed under the [MIT license](LICENSE).
