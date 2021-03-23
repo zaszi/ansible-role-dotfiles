@@ -8,7 +8,7 @@
     mode: 0700
   when: qutebrowser|bool
 
-- name: Install mako configuration file
+- name: Install qutebrowser configuration file
   copy:
     src: dotfiles/qutebrowser/config.py
     dest: "/home/{{ ansible_user }}/.config/qutebrowser/config.py"
