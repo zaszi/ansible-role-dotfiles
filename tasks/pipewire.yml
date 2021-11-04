@@ -1,0 +1,15 @@
+---
+- name: Start and enable the pipewire socket in userspace
+  systemd:
+    name: pipewire.socket
+    scope: user
+    enabled: true
+  when: pipewire|bool
+
+- name: Start and enable the pipewire-media-session service in userspace
+  systemd:
+    name: pipewire-media-session.service
+    scope: user
+    enabled: true
+    state: started
+  when: pipewire|bool
