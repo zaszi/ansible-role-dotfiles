@@ -50,3 +50,12 @@
     executable: /bin/bash
   loop: "{{ rust_cargo }}"
   when: rust|bool and item.split(' ')[0] not in cargo.stdout
+
+- name: Install cargo config
+  copy:
+    src: cargo_config
+    dest: ~/.cargo/config
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0600
+  when: rust|bool
