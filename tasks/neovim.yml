@@ -1,22 +1,11 @@
 ---
 - name: Ensure ~/.config/nvim exists
   file:
-    path: "/home/{{ ansible_user }}/.config/nvim/{{ item }}"
+    path: "/home/{{ ansible_user }}/.config/nvim/"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0700
     state: directory
-  with_items:
-    - "pack/plugin/start"
-  when: neovim|bool
-
-- name: Install neovim ASCII art file
-  copy:
-    src: dotfiles/neovim/neovim
-    dest: "/home/{{ ansible_user }}/.config/nvim/neovim"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: 0600
   when: neovim|bool
 
 - name: Install neovim configuration file
@@ -26,4 +15,10 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0600
+  when: neovim|bool
+
+- name: Install neovim lua directory
+  synchronize:
+    src: "dotfiles/neovim/lua"
+    dest: "/home/{{ ansible_user }}/.config/nvim/"
   when: neovim|bool
