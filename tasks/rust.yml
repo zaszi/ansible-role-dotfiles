@@ -1,50 +1,50 @@
 ---
 - name: Check whether Rust stable toolchain is installed and set as default
-  shell: rustup default
+  ansible.builtin.command: rustup default
   register: rust_toolchain
   when: rust|bool
   failed_when: false
   changed_when: false
 
 - name: Install Rust stable toolchain
-  shell: |
+  ansible.builtin.shell: |
     rustup toolchain install stable
     rustup default stable
   when: rust|bool and "stable" not in rust_toolchain.stdout
 
 - name: Check whether wasm32 target is installed
-  shell: rustup target list --installed
+  ansible.builtin.command: rustup target list --installed
   register: rust_wasm32
   when: rust|bool
   failed_when: false
   changed_when: false
 
 - name: Install Rust wasm32 target
-  shell: |
+  ansible.builtin.shell: |
     rustup target add wasm32-unknown-unknown
   when: rust|bool and "wasm32-unknown-unknown" not in rust_wasm32.stdout
 
 - name: Check whether required Rust components are installed
-  shell: rustup component list | grep installed
+  ansible.builtin.command: rustup component list | grep installed
   register: components
   when: rust|bool
   failed_when: false
   changed_when: false
 
 - name: Install specified Rust components
-  shell: rustup component add {{ item }}
+  ansible.builtin.command: rustup component add {{ item }}
   loop: "{{ rust_components }}"
   when: rust|bool and item not in components.stdout
 
 - name: Check whether Cargo packages are installed
-  shell: cargo install --list
+  ansible.builtin.command: cargo install --list
   register: cargo
   when: rust|bool
   failed_when: false
   changed_when: false
 
 - name: Install specified Cargo packages
-  shell: |
+  ansible.builtin.shell: |
     cargo install {{ item }}
   args:
     executable: /bin/bash
@@ -52,7 +52,7 @@
   when: rust|bool and item.split(' ')[0] not in cargo.stdout
 
 - name: Install cargo config
-  copy:
+  ansible.builtin.copy:
     src: cargo_config
     dest: ~/.cargo/config
     owner: "{{ ansible_user }}"

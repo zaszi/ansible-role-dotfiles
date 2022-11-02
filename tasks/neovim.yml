@@ -1,6 +1,6 @@
 ---
 - name: Ensure ~/.config/nvim exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.config/nvim/"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -9,7 +9,7 @@
   when: neovim|bool
 
 - name: Install neovim configuration file
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/neovim/init.lua
     dest: "/home/{{ ansible_user }}/.config/nvim/init.lua"
     owner: "{{ ansible_user }}"
@@ -18,7 +18,7 @@
   when: neovim|bool
 
 - name: Install neovim lua directory
-  synchronize:
+  ansible.posix.synchronize:
     src: "dotfiles/neovim/lua"
     dest: "/home/{{ ansible_user }}/.config/nvim/"
   when: neovim|bool

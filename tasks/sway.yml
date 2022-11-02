@@ -1,6 +1,6 @@
 ---
 - name: Ensure ~/.config/sway exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.config/sway"
     state: directory
     owner: "{{ ansible_user }}"
@@ -9,7 +9,7 @@
   when: sway|bool
 
 - name: Install sway configuration file
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/sway/config
     dest: "/home/{{ ansible_user }}/.config/sway/config"
     owner: "{{ ansible_user }}"
@@ -18,7 +18,7 @@
   when: sway|bool
 
 - name: Ensure ~/.config/waybar exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.config/waybar"
     state: directory
     owner: "{{ ansible_user }}"
@@ -27,7 +27,7 @@
   when: sway|bool
 
 - name: Install waybar config
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/waybar/config
     dest: "/home/{{ ansible_user }}/.config/waybar/config"
     owner: "{{ ansible_user }}"
@@ -36,7 +36,7 @@
   when: sway|bool
 
 - name: Install waybar style sheet
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/waybar/style.css
     dest: "/home/{{ ansible_user }}/.config/waybar/style.css"
     owner: "{{ ansible_user }}"
@@ -46,7 +46,7 @@
 
 - name: Install udev rules for backlight
   become: true
-  copy:
+  ansible.builtin.copy:
     src: backlight.rules
     dest: /etc/udev/rules.d/90-backlight.rules
     owner: root

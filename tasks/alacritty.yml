@@ -1,6 +1,6 @@
 ---
 - name: Ensure ~/.config/alacritty exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.config/alacritty"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -9,7 +9,7 @@
   when: alacritty|bool
 
 - name: Install alacritty configuration file
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/alacritty/alacritty.yml
     dest: "/home/{{ ansible_user }}/.config/alacritty/alacritty.yml"
     owner: "{{ ansible_user }}"

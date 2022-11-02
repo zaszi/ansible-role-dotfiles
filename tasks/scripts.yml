@@ -1,6 +1,6 @@
 ---
 - name: Ensure ~/.bin exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.bin"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -9,7 +9,7 @@
   when: scripts|bool
 
 - name: Install user scripts
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/home/{{ ansible_user }}/.bin/{{ item | basename }}"
     owner: "{{ ansible_user }}"
@@ -19,7 +19,7 @@
   when: scripts|bool
 
 - name: Ensure ~/.bin/snippets exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.bin/snippets"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -28,7 +28,7 @@
   when: scripts|bool
 
 - name: Install user snippets
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/home/{{ ansible_user }}/.bin/snippets/{{ item | basename }}"
     owner: "{{ ansible_user }}"

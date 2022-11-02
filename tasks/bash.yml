@@ -1,6 +1,6 @@
 ---
 - name: Install bash config
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/bash/bashrc
     dest: "/home/{{ ansible_user }}/.bashrc"
     owner: "{{ ansible_user }}"
@@ -9,7 +9,7 @@
   when: bash|bool
 
 - name: Install bash profile config
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/bash/bash_profile
     dest: "/home/{{ ansible_user }}/.bash_profile"
     owner: "{{ ansible_user }}"
@@ -18,7 +18,7 @@
   when: bash|bool
 
 - name: Install bash config for root
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/bash/bashrc
     dest: "/root/.bashrc"
     owner: root
@@ -27,8 +27,8 @@
   become: true
   when: bash|bool and bash_root|bool
 
-- name: dotfiles/Install bash profile config for root
-  copy:
+- name: Install bash profile config for root
+  ansible.builtin.copy:
     src: dotfiles/bash/bash_profile
     dest: "/root/.bash_profile"
     owner: root

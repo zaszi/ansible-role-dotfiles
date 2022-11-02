@@ -1,6 +1,6 @@
 ---
 - name: Ensure ~/.config/qutebrowser exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.config/qutebrowser"
     state: directory
     owner: "{{ ansible_user }}"
@@ -9,7 +9,7 @@
   when: qutebrowser|bool
 
 - name: Install qutebrowser configuration file
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/qutebrowser/config.py
     dest: "/home/{{ ansible_user }}/.config/qutebrowser/config.py"
     owner: "{{ ansible_user }}"

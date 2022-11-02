@@ -1,6 +1,6 @@
 ---
 - name: Ensure ~/.config/mako exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.config/mako"
     state: directory
     owner: "{{ ansible_user }}"
@@ -9,7 +9,7 @@
   when: mako|bool
 
 - name: Install mako configuration file
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/mako/config
     dest: "/home/{{ ansible_user }}/.config/mako/config"
     owner: "{{ ansible_user }}"

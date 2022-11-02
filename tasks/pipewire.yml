@@ -1,13 +1,13 @@
 ---
 - name: Start and enable the pipewire socket in userspace
-  systemd:
+  ansible.builtin.systemd:
     name: pipewire.socket
     scope: user
     enabled: true
   when: pipewire|bool
 
 - name: Start and enable the pipewire-media-session service in userspace
-  systemd:
+  ansible.builtin.systemd:
     name: pipewire-media-session.service
     scope: user
     enabled: true

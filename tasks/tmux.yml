@@ -1,6 +1,6 @@
 ---
 - name: Install tmux config
-  copy:
+  ansible.builtin.copy:
     src: dotfiles/tmux/tmux.conf
     dest: "/home/{{ ansible_user }}/.tmux.conf"
     owner: "{{ ansible_user }}"

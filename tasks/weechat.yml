@@ -1,31 +1,31 @@
 ---
 - name: Verify whether WeeChat configuration exists
-  stat:
+  ansible.builtin.stat:
     path: "/home/{{ ansible_user }}/.weechat"
   register: config
   when: weechat|bool
 
 - name: Copy WeeChat backup archive
-  synchronize:
+  ansible.posix.synchronize:
     src: "{{ weechat_backup_location }}"
     dest: "/home/{{ ansible_user }}/weechat_config.tar.gz"
   when: weechat|bool and not config.stat.exists
 
 - name: Restore WeeChat configuration backup
-  unarchive:
+  ansible.builtin.unarchive:
     src: "/home/{{ ansible_user }}/weechat_config.tar.gz"
     dest: "/home/{{ ansible_user }}"
     remote_src: true
   when: weechat|bool and not config.stat.exists
 
 - name: Remove WeeChat backup archive
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/weechat_config.tar.gz"
     state: absent
   when: weechat|bool and not config.stat.exists
 
 - name: Ensure /var/lib/systemd/linger exists
-  file:
+  ansible.builtin.file:
     path: /var/lib/systemd/linger
     owner: root
     group: root
@@ -34,18 +34,18 @@
   when: weechat|bool
 
 - name: Verify whether lingering is enabled for user
-  stat:
+  ansible.builtin.stat:
     path: "/var/lib/systemd/linger/{{ ansible_user }}"
   register: linger
   when: weechat|bool
 
 - name: Enable lingering for user
+  ansible.builtin.command: loginctl enable-linger "{{ ansible_user }}"
   become: true
-  shell: loginctl enable-linger "{{ ansible_user }}"
   when: weechat|bool and not linger.stat.exists
 
 - name: Ensure ~/.config/systemd/user exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.config/systemd/user"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -54,7 +54,7 @@
   when: weechat|bool
 
 - name: Install weechat-headless systemd unit file
-  copy:
+  ansible.builtin.copy:
     src: weechat-headless.service
     dest: "/home/{{ ansible_user }}/.config/systemd/user"
     owner: "{{ ansible_user }}"
@@ -63,7 +63,7 @@
   when: weechat|bool
 
 - name: Enable weechat-headless service
-  systemd:
+  ansible.builtin.systemd:
     name: weechat-headless.service
     enabled: true
     scope: user
