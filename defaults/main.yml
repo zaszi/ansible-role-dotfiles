@@ -12,6 +12,7 @@ rust_components: []
 rust_cargo: []
 scripts: false
 sway: false
+sway_host_config: ""
 syncthing: false
 tmux: false
 weechat: false

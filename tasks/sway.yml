@@ -17,6 +17,13 @@
     mode: 0600
   when: sway|bool
 
+- name: Install sway host-specific configuration
+  ansible.builtin.blockinfile:
+    path: "/home/{{ ansible_user }}/.config/sway/config"
+    insertafter: "# Host-specific configuration"
+    block: "{{ sway_host_config }}"
+  when: sway|bool
+
 - name: Ensure ~/.config/waybar exists
   ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.config/waybar"
