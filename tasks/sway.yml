@@ -9,19 +9,12 @@
   when: sway|bool
 
 - name: Install sway configuration file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: dotfiles/sway/config
     dest: "/home/{{ ansible_user }}/.config/sway/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0600
-  when: sway|bool
-
-- name: Install sway host-specific configuration
-  ansible.builtin.blockinfile:
-    path: "/home/{{ ansible_user }}/.config/sway/config"
-    insertafter: "# Host-specific configuration"
-    block: "{{ sway_host_config }}"
   when: sway|bool
 
 - name: Ensure ~/.config/waybar exists
