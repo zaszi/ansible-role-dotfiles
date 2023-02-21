@@ -27,16 +27,3 @@
   ansible.builtin.command: loginctl enable-linger "{{ ansible_user }}"
   become: true
   when: syncthing|bool and not linger.stat.exists
-
-- name: Verify whether Sync directory contains files
-  ansible.builtin.find:
-    path: "/var/lib/systemd/linger/{{ ansible_user }}"
-    patterns: "*"
-  register: sync
-  when: syncthing|bool
-
-- name: Remove default Sync directory if empty
-  ansible.builtin.file:
-    path: "/home/{{ ansible_user }}/Sync"
-    state: absent
-  when: syncthing|bool and sync.matched|int == 0
