@@ -11,9 +11,6 @@
 - name: Include neovim configuration
   ansible.builtin.include_tasks: neovim.yml
 
-- name: Include pipewire configuration
-  ansible.builtin.include_tasks: pipewire.yml
-
 - name: Include qutebrowser configuration
   ansible.builtin.include_tasks: qutebrowser.yml
 
