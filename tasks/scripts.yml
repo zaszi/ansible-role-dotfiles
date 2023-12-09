@@ -4,7 +4,7 @@
     path: "/home/{{ ansible_user }}/.bin"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
     state: directory
   when: scripts|bool
 
@@ -14,7 +14,7 @@
     dest: "/home/{{ ansible_user }}/.bin/{{ item | basename }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
   loop: "{{ lookup('fileglob', 'files/scripts/bin/*', wantlist=True) }}"
   when: scripts|bool
 
@@ -23,7 +23,7 @@
     path: "/home/{{ ansible_user }}/.bin/snippets"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
     state: directory
   when: scripts|bool
 
@@ -33,6 +33,6 @@
     dest: "/home/{{ ansible_user }}/.bin/snippets/{{ item | basename }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
   loop: "{{ lookup('fileglob', 'files/scripts/snippets/*', wantlist=True) }}"
   when: scripts|bool

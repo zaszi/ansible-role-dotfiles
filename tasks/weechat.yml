@@ -29,7 +29,7 @@
     path: /var/lib/systemd/linger
     owner: root
     group: root
-    mode: 0755
+    mode: '755'
     state: directory
   when: weechat|bool
 
@@ -49,7 +49,7 @@
     path: "/home/{{ ansible_user }}/.config/systemd/user"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
     state: directory
   when: weechat|bool
 
@@ -59,7 +59,7 @@
     dest: "/home/{{ ansible_user }}/.config/systemd/user"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: weechat|bool
 
 - name: Enable weechat-headless service

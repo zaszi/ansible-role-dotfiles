@@ -57,5 +57,5 @@
     dest: ~/.cargo/config
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: rust|bool

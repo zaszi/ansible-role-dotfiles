@@ -4,7 +4,7 @@
     path: "/home/{{ ansible_user }}/.config/nvim/"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
     state: directory
   when: neovim|bool
 
@@ -14,7 +14,7 @@
     dest: "/home/{{ ansible_user }}/.config/nvim/init.lua"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: neovim|bool
 
 - name: Install neovim lua directory

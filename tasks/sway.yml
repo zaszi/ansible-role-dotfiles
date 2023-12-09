@@ -5,7 +5,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
   when: sway|bool
 
 - name: Install sway configuration file
@@ -14,7 +14,7 @@
     dest: "/home/{{ ansible_user }}/.config/sway/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: sway|bool
 
 - name: Ensure ~/.config/waybar exists
@@ -23,7 +23,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
   when: sway|bool
 
 - name: Install waybar config
@@ -32,7 +32,7 @@
     dest: "/home/{{ ansible_user }}/.config/waybar/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: sway|bool
 
 - name: Install waybar style sheet
@@ -41,5 +41,5 @@
     dest: "/home/{{ ansible_user }}/.config/waybar/style.css"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: sway|bool

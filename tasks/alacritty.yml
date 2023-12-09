@@ -4,7 +4,7 @@
     path: "/home/{{ ansible_user }}/.config/alacritty"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
     state: directory
   when: alacritty|bool
 
@@ -14,5 +14,5 @@
     dest: "/home/{{ ansible_user }}/.config/alacritty/alacritty.yml"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: alacritty|bool

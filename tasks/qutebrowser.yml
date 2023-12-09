@@ -5,7 +5,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0700
+    mode: '700'
   when: qutebrowser|bool
 
 - name: Install qutebrowser configuration file
@@ -14,5 +14,5 @@
     dest: "/home/{{ ansible_user }}/.config/qutebrowser/config.py"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: qutebrowser|bool

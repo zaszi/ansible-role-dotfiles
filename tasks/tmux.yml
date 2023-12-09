@@ -5,5 +5,5 @@
     dest: "/home/{{ ansible_user }}/.tmux.conf"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: tmux|bool

@@ -12,7 +12,7 @@
     path: /var/lib/systemd/linger
     owner: root
     group: root
-    mode: 0755
+    mode: '755'
     state: directory
   become: true
   when: syncthing|bool

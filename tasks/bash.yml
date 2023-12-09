@@ -5,7 +5,7 @@
     dest: "/home/{{ ansible_user }}/.bashrc"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: bash|bool
 
 - name: Install bash profile config
@@ -14,7 +14,7 @@
     dest: "/home/{{ ansible_user }}/.bash_profile"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0600
+    mode: '600'
   when: bash|bool
 
 - name: Install bash config for root
@@ -23,7 +23,7 @@
     dest: "/root/.bashrc"
     owner: root
     group: root
-    mode: 0600
+    mode: '600'
   become: true
   when: bash|bool and bash_root|bool
 
@@ -33,6 +33,6 @@
     dest: "/root/.bash_profile"
     owner: root
     group: root
-    mode: 0600
+    mode: '600'
   become: true
   when: bash|bool and bash_root|bool
