@@ -10,6 +10,7 @@
   ansible.builtin.shell: |
     rustup toolchain install stable
     rustup default stable
+  changed_when: true
   when: rust|bool and "stable" not in rust_toolchain.stdout
 
 - name: Check whether wasm32 target is installed
@@ -22,10 +23,13 @@
 - name: Install Rust wasm32 target
   ansible.builtin.shell: |
     rustup target add wasm32-unknown-unknown
+  changed_when: true
   when: rust|bool and "wasm32-unknown-unknown" not in rust_wasm32.stdout
 
 - name: Check whether required Rust components are installed
-  ansible.builtin.shell: rustup component list | grep installed
+  ansible.builtin.shell: |
+    set -o pipefail
+    rustup component list | grep --ignore-case installed
   register: components
   when: rust|bool
   failed_when: false
@@ -34,6 +38,7 @@
 - name: Install specified Rust components
   ansible.builtin.command: rustup component add {{ item }}
   loop: "{{ rust_components }}"
+  changed_when: true
   when: rust|bool and item not in components.stdout
 
 - name: Check whether Cargo packages are installed
@@ -49,6 +54,7 @@
   args:
     executable: /bin/bash
   loop: "{{ rust_cargo }}"
+  changed_when: true
   when: rust|bool and item not in cargo.stdout
 
 - name: Install cargo config

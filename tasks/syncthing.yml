@@ -26,4 +26,5 @@
 - name: Enable lingering for user
   ansible.builtin.command: loginctl enable-linger "{{ ansible_user }}"
   become: true
+  changed_when: true
   when: syncthing|bool and not linger.stat.exists
